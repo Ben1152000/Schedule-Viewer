@@ -1,0 +1,15 @@
+Latin, #FFFF00
+Calc BC, #00FF00
+Open, #DDDDDD
+Diaspora, #BB40FF
+Comp Sci, #AAAABB
+Hebrew, #00FFFF
+Physics, #FFAACC
+English, #FF5050
+History, #FFAA00
+Advisory, #FFFFFF
+Kab Shab, #FFFFFF
+Lunch, #FFFFFF
+Beit Midrash, #FFFFFF
+Seminar, #FFFFFF
+Tefillah, #FFFFFF
