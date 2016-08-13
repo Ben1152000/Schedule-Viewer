@@ -40,9 +40,26 @@ public class Block
 	
 	public void drawMenu(Graphics g, int x, int y, int rightEdge, int lowerEdge)
 	{
-		int w = 100;
-		int h = 100;
+		// Define strings
+		String nameStr = "" + blockClass;
+		String startStr = "start: " + startTime.toString();
+		String endStr = "end: " + endTime.toString();
+		String roomStr = blockClass.getRoom() != 0? "room: " + blockClass.getRoom(): null;
+		String teacherStr = blockClass.getTeacher() != null? "teacher: " + blockClass.getTeacher(): null;
 		
+		// Determine menu width
+		int w = g.getFontMetrics().stringWidth(nameStr);
+		w = Math.max(w, g.getFontMetrics().stringWidth(startStr));
+		w = Math.max(w, g.getFontMetrics().stringWidth(endStr));
+		w = roomStr != null? Math.max(w, g.getFontMetrics().stringWidth(roomStr)): w;
+		w = teacherStr != null? Math.max(w, g.getFontMetrics().stringWidth(teacherStr)): w;
+		w += 20;
+		
+		// Determine menu height
+		int numRows = 5 - (roomStr != null? 0: 1) - (teacherStr != null? 0: 1);
+		int h = numRows * (int) (g.getFontMetrics().getStringBounds(nameStr, g).getHeight() * 1.4);
+		
+		// Make sure menu doesn't exceed window boundaries
 		if (x + w > rightEdge)
 		{
 			x -= w;
@@ -52,11 +69,23 @@ public class Block
 			y -= h;
 		}
 		
+		// Draw menu
+		g.setColor(blockClass.getColor());
+		g.fillRect(x, y, w, h);
 		g.setColor(Color.black);
 		g.drawRect(x, y, w, h);
-		blockClass.drawMenu(g, x, y, w, h);
-		Viewer.drawCenteredString(g, "start: " + startTime.toString(), new Rectangle(x, y + h/3, w, h/3));
-		Viewer.drawCenteredString(g, "end: " + endTime.toString(), new Rectangle(x, y + 2*h/3, w, h/3));
+		g.setColor(blockClass.getColor().getRed() * 0.213 + blockClass.getColor().getGreen() * 0.715 + blockClass.getColor().getBlue() * 0.072 > 128? Color.black: Color.white); // Determine proper text color
+		Viewer.drawCenteredString(g, nameStr, new Rectangle(x, y, w, h/numRows));
+		Viewer.drawCenteredString(g, startStr, new Rectangle(x, y + h/numRows, w, h/numRows));
+		Viewer.drawCenteredString(g, endStr, new Rectangle(x, y + 2 * h/numRows, w, h/numRows));
+		if (roomStr != null)
+		{
+			Viewer.drawCenteredString(g, roomStr, new Rectangle(x, y + (teacherStr == null? 3: 4) * h/numRows, w, h/numRows));
+		}
+		if (teacherStr != null)
+		{
+			Viewer.drawCenteredString(g, teacherStr, new Rectangle(x, y + 3 * h/numRows, w, h/numRows));
+		}
 		
 	}
 	

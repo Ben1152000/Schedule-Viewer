@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Frame;
@@ -14,7 +15,10 @@ import java.awt.event.MouseMotionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.event.WindowStateListener;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
@@ -147,7 +151,32 @@ public class Viewer extends JFrame
 			ArrayList<Class> classes = new ArrayList<Class>();
 			for (String[] classDatum : classData)
 			{
-				classes.add(new Class(classDatum[0], Color.decode(classDatum[1])));
+				if (classDatum.length == 2)
+				{
+					classes.add(new Class(classDatum[0], Color.decode(classDatum[1])));
+				}
+				else if (classDatum.length == 3)
+				{
+					try
+					{
+						classes.add(new Class(classDatum[0], Color.decode(classDatum[1]), Integer.parseInt(classDatum[2])));
+					}
+					catch (NumberFormatException e)
+					{
+						classes.add(new Class(classDatum[0], Color.decode(classDatum[1]), classDatum[2]));
+					}
+				}
+				else if (classDatum.length == 4)
+				{
+					try
+					{
+						classes.add(new Class(classDatum[0], Color.decode(classDatum[1]), classDatum[2], Integer.parseInt(classDatum[3])));
+					}
+					catch (NumberFormatException e)
+					{
+						classes.add(new Class(classDatum[0], Color.decode(classDatum[1]), classDatum[3], Integer.parseInt(classDatum[2])));
+					}
+				}
 			}
 			
 			schedule = new Schedule();
@@ -167,6 +196,7 @@ public class Viewer extends JFrame
 			JFrame frame = new Viewer();
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.setVisible(true);
+			frame.setResizable(false); // Until I can figure out how to only disable window drag, resizing will be locked.
 		}
 		
 		@Override

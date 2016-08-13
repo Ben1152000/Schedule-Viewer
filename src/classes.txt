@@ -1,5 +1,5 @@
-Latin, #FFFF00
-Calc BC, #00FF00
+Latin, #FFFF00, Dr. Janda
+Calc BC, #00FF00, Prof. Burger
 Open, #DDDDDD
 Diaspora, #BB40FF
 Comp Sci, #AAAABB
@@ -8,8 +8,8 @@ Physics, #FFAACC
 English, #FF5050
 History, #FFAA00
 Advisory, #FFFFFF
-Kab Shab, #FFFFFF
-Lunch, #FFFFFF
+Kab Shab, #FFFFFF, 11, Dr. Proktor
+Lunch, #FFFFFF, 12
 Beit Midrash, #FFFFFF
 Seminar, #FFFFFF
 Tefillah, #FFFFFF
