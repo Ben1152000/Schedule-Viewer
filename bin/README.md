@@ -1,5 +1,9 @@
 This program is meant to help keep track of one's class schedule.  
   
+How to run:  
+1. Double-click Viewer.class to run  
+2. Create desktop shortcut/alias for easy access  
+  
 How to customize schedule:  
 1. Go to src  
 2. Go to bin  
