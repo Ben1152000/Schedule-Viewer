@@ -13,7 +13,7 @@ public class Class
 	{
 		name = n;
 		color = Color.white;
-		room = 0;
+		room = -1;
 		teacher = null;
 	}
 	
@@ -29,7 +29,7 @@ public class Class
 	{
 		name = n;
 		color = Color.white;
-		room = 0;
+		room = -1;
 		teacher = t;
 	}
 	
@@ -45,7 +45,7 @@ public class Class
 	{
 		name = n;
 		color = c;
-		room = 0;
+		room = -1;
 		teacher = null;
 	}
 	
@@ -61,7 +61,7 @@ public class Class
 	{
 		name = n;
 		color = c;
-		room = 0;
+		room = -1;
 		teacher = t;
 	}
 	

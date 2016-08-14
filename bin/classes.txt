@@ -1,15 +1,15 @@
 Latin, #FFFF00, Dr. Janda
-Calc BC, #00FF00, Prof. Burger
+Calc BC, #00FF00, Ms. Oran
 Open, #DDDDDD
-Diaspora, #BB40FF
-Comp Sci, #AAAABB
-Hebrew, #00FFFF
-Physics, #FFAACC
-English, #FF5050
-History, #FFAA00
-Advisory, #FFFFFF
-Kab Shab, #FFFFFF, 11, Dr. Proktor
-Lunch, #FFFFFF, 12
+Diaspora, #BB40FF, Dr. Bordelon
+Comp Sci, #AAAABB, Mr. Cesarotti
+Hebrew, #00FFFF, מורה רונית
+Physics, #FFAACC, Ms. McLean
+English, #FF5050, Dr. Landers
+History, #FFAA00, Ms. Zarrella
+Advisory, #FFFFFF, Dr. Bordelon
+Kab Shab, #FFFFFF
+Lunch, #FFFFFF
 Beit Midrash, #FFFFFF
 Seminar, #FFFFFF
 Tefillah, #FFFFFF

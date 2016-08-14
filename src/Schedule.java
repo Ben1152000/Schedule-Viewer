@@ -98,6 +98,22 @@ public class Schedule
 		return null;
 	}
 	
+	public int minutesLeftInBlock(Time currentTime, int day)
+	{
+		for (Block block : schedule.get(day))
+		{
+			if (block.startTime().compareTo(currentTime) > 0)
+			{
+				return block.startTime().getMinutesFromMidnight() - currentTime.getMinutesFromMidnight();
+			}
+			else if (block.endTime().compareTo(currentTime) > 0)
+			{
+				return block.endTime().getMinutesFromMidnight() - currentTime.getMinutesFromMidnight();
+			}
+		}
+		return -1;
+	}
+	
 	public void paint(Graphics g, int x, int y, int w, int h)
 	{
 		// get time ranges:
@@ -119,13 +135,13 @@ public class Schedule
 					int colH = (int) (scaleFactor * (schedule.get(col).get(schedule.get(col).size() - 1).endTime().getMinutesFromMidnight() - schedule.get(col).get(0).startTime().getMinutesFromMidnight()));
 					int colY = y + (int) (scaleFactor * (schedule.get(col).get(0).startTime().getMinutesFromMidnight() - firstTime.getMinutesFromMidnight()));
 					g.setColor(Color.black);
-					g.drawRect(colX, colY, colW, colH);
+					g.drawRect(colX, colY, colW, colH - 1); // For some reason the -1 is important
 					
 					// Write the name of the day:
 					Viewer.drawCenteredString(g, dayNames[col], new Rectangle(colX, colY - 20, colW, 20));
 					
 					g.setColor(Color.white);
-					g.fillRect(colX, colY, colW, colH);
+					g.fillRect(colX, colY, colW, colH - 1);
 					for (int b = 0; b < schedule.get(col).size(); b++)
 					{
 						schedule.get(col).get(b).paint(g, colX, colY + (int) (scaleFactor * (schedule.get(col).get(b).startTime().getMinutesFromMidnight() - schedule.get(col).get(0).startTime().getMinutesFromMidnight())), colW, (int) (scaleFactor * (schedule.get(col).get(b).endTime().getMinutesFromMidnight() - schedule.get(col).get(b).startTime().getMinutesFromMidnight())));
@@ -159,9 +175,9 @@ public class Schedule
 						int boxY = colY + (int) (scaleFactor * (schedule.get(col).get(b).startTime().getMinutesFromMidnight() - schedule.get(col).get(0).startTime().getMinutesFromMidnight()));
 						int boxW = colW;
 						int boxH = (int) (scaleFactor * (schedule.get(col).get(b).endTime().getMinutesFromMidnight() - schedule.get(col).get(b).startTime().getMinutesFromMidnight()));
-						if (ptX > boxX && ptX < boxX + boxW)
+						if (ptX >= boxX && ptX <= boxX + boxW)
 						{
-							if (ptY > boxY && ptY < boxY + boxH)
+							if (ptY >= boxY && ptY <= boxY + boxH)
 							{
 								schedule.get(col).get(b).drawMenu(g, ptX, ptY, x + w, y + h);
 							}

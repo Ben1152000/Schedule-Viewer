@@ -33,6 +33,8 @@ public class Viewer extends JFrame
 		private static int FRAME_WIDTH = 640;
 		private static int FRAME_HEIGHT = 480;
 		private static final int TOP_OF_WINDOW = 22 + 15;	// Top of the visible window + Amount of space needed for name of day
+		private static final int LEFT_BUFFER = 7;
+		private static final int RIGHT_BUFFER = 7;
 		private static final int DELAY_IN_MILLISEC = 1000 * 60;	// Time delay between screen updates
 
 		private Schedule schedule;
@@ -60,6 +62,7 @@ public class Viewer extends JFrame
 			public void mouseMoved(MouseEvent e) {}
 			public void windowStateChanged(WindowEvent e)
 			{
+				/* Commented out while line 200 (setResizable) is active
 				if (convertStateToString(e.getNewState()).equals("NORMAL"))
 				{
 					FRAME_WIDTH = 640;
@@ -75,7 +78,7 @@ public class Viewer extends JFrame
 					clickX = -1;
 					clickY = -1;
 					repaint();
-				}
+				}*/
 			}
 			
 			/*
@@ -139,7 +142,7 @@ public class Viewer extends JFrame
 			this.addMouseListener(new MouseActionListener());
 			this.addWindowStateListener(new MouseActionListener());
 
-			setSize(FRAME_WIDTH, FRAME_HEIGHT);
+			setSize(FRAME_WIDTH + LEFT_BUFFER + RIGHT_BUFFER, FRAME_HEIGHT);
 			
 			ActionListener actionListener = new ActionOccurListener();
 			Timer clock = new Timer(DELAY_IN_MILLISEC, actionListener);
@@ -210,9 +213,10 @@ public class Viewer extends JFrame
 			// Clear the window.
 			g.setColor(Color.white);
 			g.fillRect(0, 0, getWidth(), getHeight());
-			schedule.paint(g, 10, TOP_OF_WINDOW + 10, FRAME_WIDTH - 20, (FRAME_HEIGHT - TOP_OF_WINDOW) - 20);
-			pointer.paint(g, 10, TOP_OF_WINDOW + 10, FRAME_WIDTH - 20, (FRAME_HEIGHT - TOP_OF_WINDOW) - 20, schedule.getEarliestTime(), schedule.getLatestTime(), schedule.getEarliestTime(pointer.getDay()), schedule.getLatestTime(pointer.getDay()));
-			schedule.drawMenu(g, clickX, clickY, 10, TOP_OF_WINDOW + 10, FRAME_WIDTH - 20, FRAME_HEIGHT - TOP_OF_WINDOW - 20);
+			schedule.paint(g, 10 + LEFT_BUFFER, TOP_OF_WINDOW + 10, FRAME_WIDTH - 20, (FRAME_HEIGHT - TOP_OF_WINDOW) - 20);
+			pointer.paint(g, 10 + LEFT_BUFFER, TOP_OF_WINDOW + 10, FRAME_WIDTH - 20, (FRAME_HEIGHT - TOP_OF_WINDOW) - 20, schedule.getEarliestTime(), schedule.getLatestTime(), schedule.getEarliestTime(pointer.getDay()), schedule.getLatestTime(pointer.getDay()));
+			schedule.drawMenu(g, clickX, clickY, 10 + LEFT_BUFFER, TOP_OF_WINDOW + 10, FRAME_WIDTH - 20, FRAME_HEIGHT - TOP_OF_WINDOW - 20);
+			pointer.drawMenu(g, clickX, clickY, FRAME_WIDTH - 20, FRAME_HEIGHT - TOP_OF_WINDOW - 20, schedule.minutesLeftInBlock(pointer.currentTime(), pointer.getDay()));
 		}
 		
 		

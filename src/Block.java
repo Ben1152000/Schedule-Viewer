@@ -44,8 +44,8 @@ public class Block
 		String nameStr = "" + blockClass;
 		String startStr = "start: " + startTime.toString();
 		String endStr = "end: " + endTime.toString();
-		String roomStr = blockClass.getRoom() != 0? "room: " + blockClass.getRoom(): null;
-		String teacherStr = blockClass.getTeacher() != null? "teacher: " + blockClass.getTeacher(): null;
+		String roomStr = blockClass.getRoom() != -1? "Room: " + blockClass.getRoom(): null;
+		String teacherStr = blockClass.getTeacher() != null? "Teacher: " + blockClass.getTeacher(): null;
 		
 		// Determine menu width
 		int w = g.getFontMetrics().stringWidth(nameStr);
@@ -70,10 +70,11 @@ public class Block
 		}
 		
 		// Draw menu
-		g.setColor(blockClass.getColor());
-		g.fillRect(x, y, w, h);
 		g.setColor(Color.black);
 		g.drawRect(x, y, w, h);
+		g.setColor(blockClass.getColor());
+		g.fillRect(x, y, w, h);
+		
 		g.setColor(blockClass.getColor().getRed() * 0.213 + blockClass.getColor().getGreen() * 0.715 + blockClass.getColor().getBlue() * 0.072 > 128? Color.black: Color.white); // Determine proper text color
 		Viewer.drawCenteredString(g, nameStr, new Rectangle(x, y, w, h/numRows));
 		Viewer.drawCenteredString(g, startStr, new Rectangle(x, y + h/numRows, w, h/numRows));
