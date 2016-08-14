@@ -44,8 +44,6 @@ public class Pointer
 	
 	public void drawMenu(Graphics g, int cX, int cY, int rightEdge, int lowerEdge, int minsUntilNextBlock)
 	{
-		System.out.println(cX + " " + cY);
-		System.out.println((xVal) + " " + (yVal));
 		if ((cX - xVal) * (cX - xVal) + (cY - yVal) * (cY - yVal) <= rad * rad)
 		{
 			// Define strings
@@ -53,7 +51,7 @@ public class Pointer
 			String remStr = minsUntilNextBlock > 0? "Time left in block: " + minsUntilNextBlock + " mins": null;
 			
 			// Determine menu width
-			int w = Math.max(g.getFontMetrics().stringWidth(timeStr), g.getFontMetrics().stringWidth(remStr)) + 20;
+			int w = Math.max(g.getFontMetrics().stringWidth(timeStr), remStr != null? g.getFontMetrics().stringWidth(remStr): -1) + 20;
 			
 			// Determine menu height
 			int numRows = 2 - (remStr == null? 1: 0);

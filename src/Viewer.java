@@ -1,5 +1,4 @@
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Frame;
@@ -15,18 +14,20 @@ import java.awt.event.MouseMotionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.event.WindowStateListener;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
+/*
+ * 
+ *  SCHEDULE VIEWER
+ *  Version 1.0.5 - α
+ *  
+ */
 public class Viewer extends JFrame
 {
-
 		private static final long serialVersionUID = 1L;
 		
 		// DATA:
@@ -84,6 +85,7 @@ public class Viewer extends JFrame
 			/*
 			 * BORROWED CODE--BEN DONT TOUCH!
 			 */
+			@SuppressWarnings("unused")
 			private String convertStateToString(int state) {
 		        if (state == Frame.NORMAL) {
 		            return "NORMAL";
@@ -200,6 +202,7 @@ public class Viewer extends JFrame
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frame.setVisible(true);
 			frame.setResizable(false); // Until I can figure out how to only disable window drag, resizing will be locked.
+			frame.setTitle("Schedule Viewer v1.0.4");
 		}
 		
 		@Override

@@ -100,16 +100,20 @@ public class Schedule
 	
 	public int minutesLeftInBlock(Time currentTime, int day)
 	{
-		for (Block block : schedule.get(day))
+		if (day < 5)
 		{
-			if (block.startTime().compareTo(currentTime) > 0)
+			for (Block block : schedule.get(day))
 			{
-				return block.startTime().getMinutesFromMidnight() - currentTime.getMinutesFromMidnight();
+				if (block.startTime().compareTo(currentTime) > 0)
+				{
+					return block.startTime().getMinutesFromMidnight() - currentTime.getMinutesFromMidnight();
+				}
+				else if (block.endTime().compareTo(currentTime) > 0)
+				{
+					return block.endTime().getMinutesFromMidnight() - currentTime.getMinutesFromMidnight();
+				}
 			}
-			else if (block.endTime().compareTo(currentTime) > 0)
-			{
-				return block.endTime().getMinutesFromMidnight() - currentTime.getMinutesFromMidnight();
-			}
+			return -1;
 		}
 		return -1;
 	}
